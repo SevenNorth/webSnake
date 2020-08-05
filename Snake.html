@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .food,
+        .snake {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            position: absolute;
+            line-height: 30px;
+            color: white;
+            font-weight: bold;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .snakeHead {
+            background: radial-gradient(red, blue);
+            z-index: 99;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="snake snakeHead">
+
+    </div>
+    <script>
+        var count = 1
+        document.body.appendChild(creatFood(count))
+
+        var snakes = document.querySelectorAll('.snake')
+        snakes[0].style.left = Math.floor(Math.random() * window.innerWidth) + 'px'
+        snakes[0].style.top = Math.floor(Math.random() * window.innerHeight) + 'px'
+
+        document.onkeydown = function (e) {
+            var food = document.querySelector('.food')
+            var fX = food.offsetLeft,
+                fY = food.offsetTop
+
+            var top = snakes[0].offsetTop > fY - snakes[0].offsetHeight &&
+                snakes[0].offsetTop < fY + food.offsetHeight
+            var left = snakes[0].offsetLeft > fX - snakes[0].offsetWidth &&
+                snakes[0].offsetLeft < fX + food.offsetWidth
+
+            if (top && left) {
+                count++
+                var newSnakeBody = food.cloneNode(true)
+                newSnakeBody.classList.add('snake')
+                newSnakeBody.classList.remove('food')
+                document.body.insertBefore(newSnakeBody, food)
+                document.body.removeChild(food)
+                var newfood = creatFood(count)
+                document.body.appendChild(newfood)
+            }
+
+            snakes = document.querySelectorAll('.snake')
+
+
+            //移动蛇
+            for (var i = snakes.length - 1; i > 0; i--) {
+                snakes[i].style.left = snakes[i - 1].style.left
+                snakes[i].style.top = snakes[i - 1].style.top
+            }
+
+            //右6
+            if (e.keyCode === 37) {
+                snakes[0].style.left = snakes[0].offsetLeft - 30 + 'px'
+            }
+            //左
+            if (e.keyCode === 39) {
+                snakes[0].style.left = snakes[0].offsetLeft + 30 + 'px'
+            }
+            //上
+            if (e.keyCode === 38) {
+                snakes[0].style.top = snakes[0].offsetTop - 30 + 'px'
+            }
+            //上
+            if (e.keyCode === 40) {
+                snakes[0].style.top = snakes[0].offsetTop + 30 + 'px'
+            }
+        }
+
+
+        //创建随机食物
+        function creatFood(count) {
+            var food = document.createElement('div')
+            food.classList.add('food')
+            food.style.display = 'block'
+            food.innerText = count
+            var color = 'rgb(' + Math.floor(Math.random() * 256) + ',' +
+                Math.floor(Math.random() * 256) + ',' +
+                Math.floor(Math.random() * 256) + ')'
+            food.style.background = color
+            var rX = Math.floor(Math.random() * (document.documentElement.clientWidth - food.clientWidth))
+            var rY = Math.floor(Math.random() * (document.documentElement.clientHeight - food.clientHeight))
+            food.style.left = rX + 'px'
+            food.style.top = rY + 'px'
+            return food
+        }
+    </script>
+</body>
+
+</html>
