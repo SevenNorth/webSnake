@@ -31,7 +31,7 @@
 
         .snakeHead {
             background: url(img/snake.png) no-repeat center center;
-            background-size: 150%;
+            background-size: 190%;
             z-index: 99;
         }
     </style>
@@ -89,20 +89,24 @@
                 snakes[i].style.top = snakes[i - 1].style.top
             }
 
-            //右6
+            //左
             if (e.keyCode === 37) {
+                snakes[0].style.transform='rotate(270deg)'
                 snakes[0].style.left = snakes[0].offsetLeft - 30 + 'px'
             }
-            //左
+            //右
             if (e.keyCode === 39) {
+                snakes[0].style.transform='rotate(90deg)'
                 snakes[0].style.left = snakes[0].offsetLeft + 30 + 'px'
             }
             //上
             if (e.keyCode === 38) {
+                snakes[0].style.transform='rotate(0deg)'
                 snakes[0].style.top = snakes[0].offsetTop - 30 + 'px'
             }
             //上
             if (e.keyCode === 40) {
+                snakes[0].style.transform='rotate(180deg)'
                 snakes[0].style.top = snakes[0].offsetTop + 30 + 'px'
             }
         }
