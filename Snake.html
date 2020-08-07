@@ -54,11 +54,11 @@
         document.body.appendChild(creatFood(count))
 
         var snakes = document.querySelectorAll('.snake')
-        snakes[0].style.left = Math.floor(Math.random() * window.innerWidth) + 'px'
-        snakes[0].style.top = Math.floor(Math.random() * window.innerHeight) + 'px'
-
+        snakes[0].style.left = Math.floor(Math.random() * (window.innerWidth - 30)) + 'px'
+        snakes[0].style.top = Math.floor(Math.random() * (window.innerHeight - 30)) + 'px'
         document.onkeydown = function (e) {
             var food = document.querySelector('.food')
+            // 食物坐标
             var fX = food.offsetLeft,
                 fY = food.offsetTop
 
@@ -73,7 +73,7 @@
                 newSnakeBody.classList.add('snake')
                 newSnakeBody.classList.remove('food')
                 // console.log(newSnakeBody.style.background.split(' ').slice(1,).join(''))
-                newSnakeBody.style.background=newSnakeBody.style.background.split(' ').slice(1,).join('')
+                newSnakeBody.style.background = newSnakeBody.style.background.split(' ').slice(1, ).join('')
                 document.body.insertBefore(newSnakeBody, food)
                 document.body.removeChild(food)
                 var newfood = creatFood()
@@ -91,22 +91,22 @@
 
             //左
             if (e.keyCode === 37) {
-                snakes[0].style.transform='rotate(270deg)'
+                snakes[0].style.transform = 'rotate(270deg)'
                 snakes[0].style.left = snakes[0].offsetLeft - 30 + 'px'
             }
             //右
             if (e.keyCode === 39) {
-                snakes[0].style.transform='rotate(90deg)'
+                snakes[0].style.transform = 'rotate(90deg)'
                 snakes[0].style.left = snakes[0].offsetLeft + 30 + 'px'
             }
             //上
             if (e.keyCode === 38) {
-                snakes[0].style.transform='rotate(0deg)'
+                snakes[0].style.transform = 'rotate(0deg)'
                 snakes[0].style.top = snakes[0].offsetTop - 30 + 'px'
             }
             //上
             if (e.keyCode === 40) {
-                snakes[0].style.transform='rotate(180deg)'
+                snakes[0].style.transform = 'rotate(180deg)'
                 snakes[0].style.top = snakes[0].offsetTop + 30 + 'px'
             }
         }
@@ -126,8 +126,11 @@
             // console.log(foodSrc)
             food.style.background = foodSrc
             // console.log(food.style.background.split(' ').slice(1, ).join(''))
-            var rX = Math.floor(Math.random() * (document.documentElement.clientWidth - food.clientWidth))
-            var rY = Math.floor(Math.random() * (document.documentElement.clientHeight - food.clientHeight))
+            // 生成食物的随机位置
+            var rX = Math.floor(Math.random() * (window.innerWidth - 30))
+            var rY = Math.floor(Math.random() * (window.innerHeight - 30))
+            // console.log(document.documentElement.clientWidth, food.clientWidth, )
+            // console.log(document.documentElement.clientHeight, food.clientHeight)
             food.style.left = rX + 'px'
             food.style.top = rY + 'px'
             return food
