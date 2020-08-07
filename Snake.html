@@ -43,7 +43,7 @@
 
     </div>
     <script>
-        var count = 1
+        // var count = 0
         var srcs = ['apple.png',
             'clz.png',
             'hlg.png',
@@ -52,7 +52,7 @@
             'pineapple.png',
             'yt.png',
         ]
-        document.body.appendChild(creatFood(count))
+        document.body.appendChild(creatFood())
 
 				var snakes = document.querySelectorAll('.snake')
         snakes[0].style.left = Math.floor(Math.random() * (window.innerWidth - 30)) + 'px'
@@ -61,26 +61,26 @@
         document.onkeydown = function (e) {
             var food = document.querySelector('.food')
             // 食物坐标
-            var fX = food.offsetLeft,
-                fY = food.offsetTop
+            // var fX = food.offsetLeft,
+            //     fY = food.offsetTop
 
-            var top = snakes[0].offsetTop > fY - snakes[0].offsetHeight &&
-                snakes[0].offsetTop < fY + food.offsetHeight
-            var left = snakes[0].offsetLeft > fX - snakes[0].offsetWidth &&
-                snakes[0].offsetLeft < fX + food.offsetWidth
+            // var top = snakes[0].offsetTop > fY - snakes[0].offsetHeight &&
+            //     snakes[0].offsetTop < fY + food.offsetHeight
+            // var left = snakes[0].offsetLeft > fX - snakes[0].offsetWidth &&
+            //     snakes[0].offsetLeft < fX + food.offsetWidth
 
-            if (top && left) {
-                count++
-                var newSnakeBody = food.cloneNode(true)
-                newSnakeBody.classList.add('snake')
-                newSnakeBody.classList.remove('food')
-                // console.log(newSnakeBody.style.background.split(' ').slice(1,).join(''))
-                newSnakeBody.style.background = newSnakeBody.style.background.split(' ').slice(1, ).join('')
-                document.body.insertBefore(newSnakeBody, food)
-                document.body.removeChild(food)
-                var newfood = creatFood()
-                document.body.appendChild(newfood)
-            }
+            // if (top && left) {
+            //     count++
+            //     var newSnakeBody = food.cloneNode(true)
+            //     newSnakeBody.classList.add('snake')
+            //     newSnakeBody.classList.remove('food')
+            //     // console.log(newSnakeBody.style.background.split(' ').slice(1,).join(''))
+            //     newSnakeBody.style.background = newSnakeBody.style.background.split(' ').slice(1, ).join('')
+            //     document.body.insertBefore(newSnakeBody, food)
+            //     document.body.removeChild(food)
+            //     var newfood = creatFood()
+            //     document.body.appendChild(newfood)
+            // }
 
             snakes = document.querySelectorAll('.snake')
 
@@ -118,7 +118,7 @@
 								direc='down'
 						}
 						// console.log(utils.timer,direc)	
-						utils.move(snakes,direc)
+						utils.move(snakes,direc,food)
 				}
 				
         //创建随机食物
