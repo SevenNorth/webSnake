@@ -34,8 +34,8 @@
             background-size: 190%;
             z-index: 99;
         }
-		</style>
-		<script src="js/utils.js"></script>
+    </style>
+    <script src="js/utils.js"></script>
 </head>
 
 <body>
@@ -54,10 +54,10 @@
         ]
         document.body.appendChild(creatFood())
 
-				var snakes = document.querySelectorAll('.snake')
+        var snakes = document.querySelectorAll('.snake')
         snakes[0].style.left = Math.floor(Math.random() * (window.innerWidth - 30)) + 'px'
-				snakes[0].style.top = Math.floor(Math.random() * (window.innerHeight - 30)) + 'px'
-				//绑定事件
+        snakes[0].style.top = Math.floor(Math.random() * (window.innerHeight - 30)) + 'px'
+        //绑定事件
         document.onkeydown = function (e) {
             var food = document.querySelector('.food')
             // 食物坐标
@@ -92,35 +92,35 @@
             // }
 
 
-						var direc=''
+            var direc = ''
             //左
             if (e.keyCode === 37) {
                 // snakes[0].style.transform = 'rotate(270deg)'
-								// snakes[0].style.left = snakes[0].offsetLeft - 30 + 'px'
-								direc='left'
+                // snakes[0].style.left = snakes[0].offsetLeft - 30 + 'px'
+                direc = 'left'
             }
             //右
             if (e.keyCode === 39) {
                 // snakes[0].style.transform = 'rotate(90deg)'
-								// snakes[0].style.left = snakes[0].offsetLeft + 30 + 'px'
-								direc='right'
+                // snakes[0].style.left = snakes[0].offsetLeft + 30 + 'px'
+                direc = 'right'
             }
             //上
             if (e.keyCode === 38) {
                 // snakes[0].style.transform = 'rotate(0deg)'
-								// snakes[0].style.top = snakes[0].offsetTop - 30 + 'px'
-								direc='up'
+                // snakes[0].style.top = snakes[0].offsetTop - 30 + 'px'
+                direc = 'up'
             }
             //上
             if (e.keyCode === 40) {
                 // snakes[0].style.transform = 'rotate(180deg)'
-								// snakes[0].style.top = snakes[0].offsetTop + 30 + 'px'
-								direc='down'
-						}
-						// console.log(utils.timer,direc)	
-						utils.move(snakes,direc,food)
-				}
-				
+                // snakes[0].style.top = snakes[0].offsetTop + 30 + 'px'
+                direc = 'down'
+            }
+            // console.log(utils.timer,direc)	
+            utils.move(snakes, direc, food)
+        }
+
         //创建随机食物
         function creatFood() {
             var food = document.createElement('div')

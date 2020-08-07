@@ -12,7 +12,7 @@ const utils = {
 			case 'left':
 				clearInterval(utils.timer)
 				utils.timer = setInterval(() => {
-					utils.eatFood(snakes, food)
+					utils.eatFood(ele, food)
 					ele = document.querySelectorAll('.snake')
 					utils.moveSnake(ele)
 					utils.isDead(utils.isStrickWall(ele))
@@ -26,7 +26,7 @@ const utils = {
 			case 'right':
 				clearInterval(utils.timer)
 				utils.timer = setInterval(() => {
-					utils.eatFood(snakes, food)
+					utils.eatFood(ele, food)
 					ele = document.querySelectorAll('.snake')
 					utils.moveSnake(ele)
 					utils.isDead(utils.isStrickWall(ele))
@@ -40,7 +40,7 @@ const utils = {
 			case 'up':
 				clearInterval(utils.timer)
 				utils.timer = setInterval(() => {
-					utils.eatFood(snakes, food)
+					utils.eatFood(ele, food)
 					ele = document.querySelectorAll('.snake')
 					utils.moveSnake(ele)
 					utils.isDead(utils.isStrickWall(ele))
@@ -55,7 +55,7 @@ const utils = {
 			case 'down':
 				clearInterval(utils.timer)
 				utils.timer = setInterval(() => {
-					utils.eatFood(snakes, food)
+					utils.eatFood(ele, food)
 					ele = document.querySelectorAll('.snake')
 					utils.moveSnake(ele)
 					utils.isDead(utils.isStrickWall(ele) )
