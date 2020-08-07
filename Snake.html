@@ -131,7 +131,7 @@
                 Math.floor(Math.random() * 256) + ',' +
                 Math.floor(Math.random() * 256) + ')'
             // food.style.background = color
-            var foodSrc = 'url(img/' + srcs[Math.floor(Math.random() * 7)] + ')' + ' ' + color
+            var foodSrc = 'url(img/' + srcs[Math.floor(Math.random() * srcs.length)] + ')' + ' ' + color
             // console.log(foodSrc)
             food.style.background = foodSrc
             // console.log(food.style.background.split(' ').slice(1, ).join(''))
