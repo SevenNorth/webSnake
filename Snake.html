@@ -11,6 +11,11 @@
             padding: 0;
         }
 
+        html,
+        body {
+            height: 100%;
+        }
+
         .food,
         .snake {
             width: 30px;
@@ -25,7 +30,8 @@
         }
 
         .snakeHead {
-            background: radial-gradient(red, blue);
+            background: url(img/snake.png) no-repeat center center;
+            background-size: 150%;
             z-index: 99;
         }
     </style>
@@ -37,6 +43,14 @@
     </div>
     <script>
         var count = 1
+        var srcs = ['apple.png',
+            'clz.png',
+            'hlg.png',
+            'pg.png',
+            'pg2.png',
+            'pineapple.png',
+            'yt.png',
+        ]
         document.body.appendChild(creatFood(count))
 
         var snakes = document.querySelectorAll('.snake')
@@ -58,16 +72,18 @@
                 var newSnakeBody = food.cloneNode(true)
                 newSnakeBody.classList.add('snake')
                 newSnakeBody.classList.remove('food')
+                // console.log(newSnakeBody.style.background.split(' ').slice(1,).join(''))
+                newSnakeBody.style.background=newSnakeBody.style.background.split(' ').slice(1,).join('')
                 document.body.insertBefore(newSnakeBody, food)
                 document.body.removeChild(food)
-                var newfood = creatFood(count)
+                var newfood = creatFood()
                 document.body.appendChild(newfood)
             }
 
             snakes = document.querySelectorAll('.snake')
 
 
-            //移动蛇
+            //移动蛇。后一个蛇的body的位置等于前一个body的位置
             for (var i = snakes.length - 1; i > 0; i--) {
                 snakes[i].style.left = snakes[i - 1].style.left
                 snakes[i].style.top = snakes[i - 1].style.top
@@ -93,15 +109,19 @@
 
 
         //创建随机食物
-        function creatFood(count) {
+        function creatFood() {
             var food = document.createElement('div')
             food.classList.add('food')
             food.style.display = 'block'
-            food.innerText = count
+            // food.innerText = count
             var color = 'rgb(' + Math.floor(Math.random() * 256) + ',' +
                 Math.floor(Math.random() * 256) + ',' +
                 Math.floor(Math.random() * 256) + ')'
-            food.style.background = color
+            // food.style.background = color
+            var foodSrc = 'url(img/' + srcs[Math.floor(Math.random() * 7)] + ')' + ' ' + color
+            // console.log(foodSrc)
+            food.style.background = foodSrc
+            // console.log(food.style.background.split(' ').slice(1, ).join(''))
             var rX = Math.floor(Math.random() * (document.documentElement.clientWidth - food.clientWidth))
             var rY = Math.floor(Math.random() * (document.documentElement.clientHeight - food.clientHeight))
             food.style.left = rX + 'px'
