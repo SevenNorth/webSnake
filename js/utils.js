@@ -65,7 +65,7 @@ const utils = {
 					break;
 				case 'down':
 					var attr = 'top',
-						rotate = 'rotate(18 0deg)'
+						rotate = 'rotate(180deg)'
 					utils.howToMove(ele, food, attr, rotate, direction)
 					// clearInterval(utils.timer)
 					// utils.timer = setInterval(() => {
