@@ -14,7 +14,7 @@ const utils = {
 				case 'left':
 					var attr = 'left',
 						rotate = 'rotate(270deg)'
-					utils.howToMove(ele, food, attr, rotate, direction)
+					utils.howToMove(ele, food, attr, rotate, direction, utils.speed(ele))
 					// clearInterval(utils.timer)
 					// utils.timer = setInterval(() => {
 					// 	utils.eatFood(ele, food)
@@ -31,7 +31,7 @@ const utils = {
 				case 'right':
 					var attr = 'left',
 						rotate = 'rotate(90deg)'
-					utils.howToMove(ele, food, attr, rotate, direction)
+					utils.howToMove(ele, food, attr, rotate, direction, utils.speed(ele))
 					// clearInterval(utils.timer)
 					// utils.timer = setInterval(() => {
 					// 	utils.eatFood(ele, food)
@@ -48,7 +48,7 @@ const utils = {
 				case 'up':
 					var attr = 'top',
 						rotate = 'rotate(0deg)'
-					utils.howToMove(ele, food, attr, rotate, direction)
+					utils.howToMove(ele, food, attr, rotate, direction, utils.speed(ele))
 					// clearInterval(utils.timer)
 					// utils.timer = setInterval(() => {
 					// 	utils.eatFood(ele, food)
@@ -66,7 +66,7 @@ const utils = {
 				case 'down':
 					var attr = 'top',
 						rotate = 'rotate(180deg)'
-					utils.howToMove(ele, food, attr, rotate, direction)
+					utils.howToMove(ele, food, attr, rotate, direction, utils.speed(ele))
 					// clearInterval(utils.timer)
 					// utils.timer = setInterval(() => {
 					// 	utils.eatFood(ele, food)
@@ -152,7 +152,7 @@ const utils = {
 		}
 	},
 	//封装运动函数
-	howToMove(ele, food, attr, rotate, direc) {
+	howToMove(ele, food, attr, rotate, direc, speed) {
 		utils.oldDeirction = direc
 		clearInterval(utils.timer)
 		utils.timer = setInterval(() => {
@@ -178,10 +178,15 @@ const utils = {
 			}
 			utils.isDead(utils.isCrash(ele))
 			// utils.isDead(utils.isStrickWall(ele))
-		}, 80);
+		}, speed);
 	},
 	// 是否反向
 	isReverse(direc) {
 		return utils.oldDeirction === 'up' && direc === 'down' || utils.oldDeirction === 'down' && direc === 'up' || utils.oldDeirction === 'left' && direc === 'right' || utils.oldDeirction === 'right' && direc === 'left'
+	},
+	//判断速度
+	speed(ele) {
+		var speed = 150
+		return (speed +ele.length*50)/ (ele.length)
 	}
 }
