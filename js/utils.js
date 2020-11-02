@@ -135,7 +135,15 @@ const utils = {
 	isDead(isDead) {
 		if (isDead) {
 			clearInterval(utils.timer)
-			alert(`你死了,你的成绩是${utils.count}`)
+
+			let hightscore=localStorage.getItem('hightscore')
+			if(hightscore){
+				localStorage.setItem('hightscore',hightscore<utils.count?utils.count:hightscore)
+			}else{
+				localStorage.setItem('hightscore',utils.count)
+			}
+
+			alert(`你死了,你的成绩是${utils.count}\r\n您的最高分是${localStorage.getItem('hightscore')}`)
 			window.location.reload(true);
 		}
 	},
